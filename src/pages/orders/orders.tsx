@@ -16,7 +16,7 @@ type OrderItem = {
   created_at: string;
 };
 
-const orderItems: OrderItem[] = [
+export const orderItems: OrderItem[] = [
   {
     id: "j2jee9ww",
     user: "John Done",

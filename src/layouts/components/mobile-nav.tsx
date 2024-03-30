@@ -4,8 +4,10 @@ import { DASHBOARD_ROUTE } from "@/routes";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SIDEBAR_MENU_LINKS, SideBarNavLinkItem } from "./sidebar";
+import { useState } from "react";
 
 function MobileNav() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="md:hidden flex justify-between items-center p-4 border-b">
       <Link
@@ -19,9 +21,13 @@ function MobileNav() {
         />
         <h1 className="text-5xl font-bold logo text-primary">ADMIN</h1>
       </Link>
-      <Sheet>
+      <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setIsMenuOpen(true)}
+          >
             <Menu className="size-4" />
           </Button>
         </SheetTrigger>
@@ -34,6 +40,7 @@ function MobileNav() {
                 icon={menu.icon}
                 path={menu.path}
                 title={menu.title}
+                onAction={() => setIsMenuOpen(false)}
               />
             ))}
           </div>

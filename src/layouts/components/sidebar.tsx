@@ -22,6 +22,7 @@ export interface ISideBarNavLink {
   path: string;
   title: string;
   icon: ElementType;
+  onAction?: () => void;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -46,19 +47,25 @@ export const SIDEBAR_MENU_LINKS: ISideBarNavLink[] = [
     path: ORDERS_ROUTE,
     title: "Orders",
   },
-  {
-    icon: Users,
-    path: USERS_ROUTE,
-    title: "Customers",
-  },
+  // {
+  //   icon: Users,
+  //   path: USERS_ROUTE,
+  //   title: "Customers",
+  // },
 ];
 
-export function SideBarNavLinkItem({ icon, path, title }: ISideBarNavLink) {
+export function SideBarNavLinkItem({
+  icon,
+  path,
+  title,
+  onAction,
+}: ISideBarNavLink) {
   const { setHeader } = useContext(GlobalContext) as GlobalContextType;
   const matches = useMatch(path);
 
   const handleClick = () => {
     setHeader(title);
+    if (onAction !== undefined) onAction();
   };
 
   return (
