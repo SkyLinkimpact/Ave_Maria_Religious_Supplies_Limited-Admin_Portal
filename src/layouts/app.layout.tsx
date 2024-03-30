@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 function AppLayout() {
   return (
-    <main className="w-screen h-screen antialiased">
+    <main className="w-screen h-screen antialiased bg-background">
       <Outlet />
       <Toaster />
     </main>
