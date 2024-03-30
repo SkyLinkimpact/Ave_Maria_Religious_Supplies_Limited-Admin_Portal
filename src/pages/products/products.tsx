@@ -1,47 +1,55 @@
 import { Button } from "@/components/ui/button";
 import {
   Table,
-  TableBody,
-  TableCell,
-  TableHead,
   TableHeader,
   TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
 } from "@/components/ui/table";
 import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
 import { Plus } from "lucide-react";
 import { useContext, useEffect } from "react";
 
-type CategoryItem = {
+type Product = {
   id: string;
-  title: string;
+  name: string;
+  quatity: number;
+  category: string;
   created_at: string;
 };
 
-const categoryItems: CategoryItem[] = [
+const products: Product[] = [
   {
-    id: "demo-1",
-    title: "Card",
+    id: "product-1",
+    name: "Red Candle",
+    quatity: 20,
+    category: "Candle",
     created_at: Date.now().toString(),
   },
   {
-    id: "demo-2",
-    title: "Candle",
+    id: "product-2",
+    name: "Happy Easter Card",
+    quatity: 800,
+    category: "Card",
     created_at: Date.now().toString(),
   },
   {
-    id: "demo-1",
-    title: "Candle Holders",
+    id: "product-3",
+    name: "Silver Candle",
+    quatity: 20,
+    category: "Candle Holder",
     created_at: Date.now().toString(),
   },
 ];
 
-function CategoryPage() {
+function ProductsPage() {
   const { header, setHeader } = useContext(GlobalContext) as GlobalContextType;
 
   useEffect(() => {
     if (header !== "Dashboard") return;
 
-    setHeader("Categories");
+    setHeader("Products");
   }, [header, setHeader]);
 
   return (
@@ -57,16 +65,20 @@ function CategoryPage() {
           <TableHeader>
             <TableRow>
               <TableHead />
-              <TableHead>Title</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Quantity in Stock</TableHead>
+              <TableHead>Category</TableHead>
               <TableHead>Created At</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {categoryItems.map((itm, idx) => (
+            {products.map((itm, idx) => (
               <TableRow key={itm.id}>
                 <TableCell>{idx + 1}</TableCell>
-                <TableCell className="font-medium">{itm.title}</TableCell>
+                <TableCell className="font-medium">{itm.name}</TableCell>
+                <TableCell>{itm.quatity}</TableCell>
+                <TableCell>{itm.category}</TableCell>
                 <TableCell>{itm.created_at}</TableCell>
               </TableRow>
             ))}
@@ -77,4 +89,4 @@ function CategoryPage() {
   );
 }
 
-export default CategoryPage;
+export default ProductsPage;

@@ -1,4 +1,4 @@
-import { createElement, ElementType } from "react";
+import { createElement, ElementType, useContext } from "react";
 import { Link, useMatch } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -16,6 +16,7 @@ import {
   USERS_ROUTE,
 } from "@/routes";
 import { cn } from "@/lib/utils";
+import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
 
 export interface ISideBarNavLink {
   path: string;
@@ -52,7 +53,12 @@ export const SIDEBAR_MENU_LINKS: ISideBarNavLink[] = [
 ];
 
 export function SideBarNavLinkItem({ icon, path, title }: ISideBarNavLink) {
+  const { setHeader } = useContext(GlobalContext) as GlobalContextType;
   const matches = useMatch(path);
+
+  const handleClick = () => {
+    setHeader(title);
+  };
 
   return (
     <Link
@@ -61,6 +67,7 @@ export function SideBarNavLinkItem({ icon, path, title }: ISideBarNavLink) {
         matches && "text-primary-foreground bg-primary"
       )}
       to={path}
+      onClick={handleClick}
     >
       {createElement(icon, { className: "size-8 group-hover:scale-75" })}
       <span
