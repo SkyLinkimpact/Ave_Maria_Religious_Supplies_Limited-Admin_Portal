@@ -24,6 +24,7 @@ export interface ISideBarNavLink {
   icon: ElementType;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const SIDEBAR_MENU_LINKS: ISideBarNavLink[] = [
   {
     icon: LayoutDashboard,
@@ -48,7 +49,7 @@ export const SIDEBAR_MENU_LINKS: ISideBarNavLink[] = [
   {
     icon: Users,
     path: USERS_ROUTE,
-    title: "Users",
+    title: "Customers",
   },
 ];
 

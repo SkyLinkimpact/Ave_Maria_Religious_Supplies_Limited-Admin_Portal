@@ -5,8 +5,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import AppLayout from "./layouts/app.layout";
-import { CATEGORIES_ROUTE, LOGIN_ROUTE, PRODUCTS_ROUTE } from "./routes";
-import { CategoryPage, LoginPage, ProductsPage } from "./pages";
+import {
+  CATEGORIES_ROUTE,
+  LOGIN_ROUTE,
+  ORDERS_ROUTE,
+  PRODUCTS_ROUTE,
+} from "./routes";
+import { CategoryPage, LoginPage, OrdersPage, ProductsPage } from "./pages";
 import ProtectedLayout from "./layouts/protected.layout";
 
 const router = createBrowserRouter(
@@ -16,6 +21,7 @@ const router = createBrowserRouter(
       <Route element={<ProtectedLayout />}>
         <Route path={CATEGORIES_ROUTE} element={<CategoryPage />} />
         <Route path={PRODUCTS_ROUTE} element={<ProductsPage />} />
+        <Route path={ORDERS_ROUTE} element={<OrdersPage />} />
       </Route>
     </Route>
   )
