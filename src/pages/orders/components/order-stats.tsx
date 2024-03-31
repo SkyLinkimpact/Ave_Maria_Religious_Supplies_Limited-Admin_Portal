@@ -1,28 +1,24 @@
 import { Stat, StatProp } from "@/components/ui/stat";
 
-const stats: StatProp[] = [
+const orderStats: StatProp[] = [
   {
-    stat: 200,
-    title: "Products",
+    stat: 10,
+    title: "pending",
   },
   {
-    stat: 3,
-    title: "Product Categories",
+    stat: 5,
+    title: "processing",
   },
   {
-    stat: 12,
-    title: "Pending Orders",
-  },
-  {
-    stat: 250,
-    title: "inventory items",
+    stat: 50,
+    title: "fulfilled",
   },
 ];
 
-function Stats() {
+function OrderStats() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-4">
-      {stats.map((stat) => (
+      {orderStats.map((stat) => (
         <Stat
           stat={stat.stat}
           title={stat.title}
@@ -33,4 +29,4 @@ function Stats() {
   );
 }
 
-export default Stats;
+export default OrderStats;

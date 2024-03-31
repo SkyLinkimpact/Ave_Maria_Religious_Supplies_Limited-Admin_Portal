@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
 import { useContext, useEffect } from "react";
+import OrderStats from "./components/order-stats";
 
 type OrderItem = {
   id: string;
@@ -48,6 +49,7 @@ function OrdersPage() {
 
   return (
     <div className="w-full flex flex-col gap-6">
+      <OrderStats />
       <div className="w-full overflow-x-scroll">
         <Table>
           <TableHeader>
