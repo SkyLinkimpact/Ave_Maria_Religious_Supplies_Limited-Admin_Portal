@@ -1,19 +1,12 @@
 import { createElement, ElementType, useContext } from "react";
 import { Link, useMatch } from "react-router-dom";
-import {
-  LayoutDashboard,
-  List,
-  Package,
-  ShoppingBag,
-  Users,
-} from "lucide-react";
+import { LayoutDashboard, List, Package, ShoppingBag } from "lucide-react";
 
 import {
   CATEGORIES_ROUTE,
   DASHBOARD_ROUTE,
   ORDERS_ROUTE,
   PRODUCTS_ROUTE,
-  USERS_ROUTE,
 } from "@/routes";
 import { cn } from "@/lib/utils";
 import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
