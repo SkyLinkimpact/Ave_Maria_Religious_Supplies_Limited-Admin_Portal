@@ -88,7 +88,7 @@ function SideBar() {
         className="flex items-center justify-center border-b p-3 gap-2"
       >
         <img
-          src="/logo.PNG"
+          src="/logo.webp"
           alt="Ave Maria Religious Supplies Logo"
           className="h-16"
         />

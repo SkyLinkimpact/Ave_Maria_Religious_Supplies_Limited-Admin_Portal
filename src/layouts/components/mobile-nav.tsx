@@ -15,7 +15,7 @@ function MobileNav() {
         className="flex items-center justify-center gap-2"
       >
         <img
-          src="/logo.PNG"
+          src="/logo.webp"
           alt="Ave Maria Religious Supplies Logo"
           className="h-12"
         />
