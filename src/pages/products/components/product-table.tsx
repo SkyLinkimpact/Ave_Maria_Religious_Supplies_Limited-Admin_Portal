@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table";
 import { Product } from "@/lib/types";
 import AddNewProductFormDialog from "./add-product-form-dialog";
-import { formatDate } from "@/lib/utils";
+import { formatCurrency, formatDate, formatNumber } from "@/lib/utils";
 import EditProductFormDialog from "./edit-product-form-dialog";
 import DeleteProductDialog from "./delete-product-dialog";
 
@@ -32,6 +32,7 @@ function ProductTable({ products }: Props) {
           <TableHead />
           <TableHead />
           <TableHead>Title</TableHead>
+          <TableHead>Price</TableHead>
           <TableHead>Quantity in Stock</TableHead>
           <TableHead>Category</TableHead>
           <TableHead />
@@ -51,7 +52,8 @@ function ProductTable({ products }: Props) {
               />
             </TableCell>
             <TableCell className="font-medium">{product.title}</TableCell>
-            <TableCell>{product.inventory}</TableCell>
+            <TableCell>{formatCurrency(product.price)}</TableCell>
+            <TableCell>{formatNumber(product.inventory)}</TableCell>
             <TableCell>{product.category.title}</TableCell>
             <TableCell>
               <div className="flex gap-4">

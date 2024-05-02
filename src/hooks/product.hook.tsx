@@ -42,7 +42,7 @@ function useProduct() {
 
   return {
     products: products?.data,
-    total: products?.meta.total,
+    productCount: products?.meta.total,
     lastPage: products?.meta.last_page,
     isProductsLoading,
     currentPage,

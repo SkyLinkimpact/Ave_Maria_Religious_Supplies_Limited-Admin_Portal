@@ -55,3 +55,8 @@ export type Product = {
 };
 
 export type Products = PaginatedResponse<Product>;
+
+export type InventorySummary = {
+  inventoryCount: number;
+  inventoryPrice: number;
+};

@@ -18,7 +18,7 @@ function ProductsPage() {
   const {
     products,
     isProductsLoading,
-    total,
+    productCount,
     currentPage,
     nextPage,
     prevPage,
@@ -46,7 +46,7 @@ function ProductsPage() {
 
         <ProductTable products={products} />
 
-        {products && total && total > 15 && (
+        {products && productCount && productCount > 15 && (
           <Pagination>
             <PaginationContent>
               <PaginationItem>
