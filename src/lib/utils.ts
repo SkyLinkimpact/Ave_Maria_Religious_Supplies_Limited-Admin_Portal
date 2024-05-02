@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function formatNumber(data: number) {
   return Intl.NumberFormat(undefined, {
     style: "decimal",
-    minimumSignificantDigits: 2,
+    // minimumSignificantDigits: 2,
     useGrouping: true,
   }).format(data);
 }
