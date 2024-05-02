@@ -1,5 +1,6 @@
 import {
   Category,
+  CategoryWithProductCount,
   ServerMessageResponse,
   StoreCategoryRequest,
   UpdateCategoryRequest,
@@ -58,6 +59,19 @@ export async function editCategory(
   const res = await axiosInstance.patch<ServerMessageResponse>(
     `categories/${categoryId}`,
     payload
+  );
+
+  return res.data;
+}
+
+/**
+ * Get categories with high product count
+ *
+ * @returns Categories with high product count
+ */
+export async function getCategoriesWithHighProductCount() {
+  const res = await axiosInstance.get<CategoryWithProductCount[]>(
+    "categories/product_count"
   );
 
   return res.data;

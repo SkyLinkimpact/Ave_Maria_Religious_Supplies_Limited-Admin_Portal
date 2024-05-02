@@ -60,3 +60,9 @@ export type InventorySummary = {
   inventoryCount: number;
   inventoryPrice: number;
 };
+
+export type CategoryWithProductCount = {
+  id: string;
+  title: string;
+  productCount: number;
+};
