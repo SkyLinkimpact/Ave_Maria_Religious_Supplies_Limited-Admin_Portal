@@ -1,50 +1,29 @@
-import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
 import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
-import { Plus } from "lucide-react";
+import useProduct from "@/hooks/product.hook";
+import { Loader } from "lucide-react";
 import { useContext, useEffect } from "react";
-
-type Product = {
-  id: string;
-  name: string;
-  quatity: number;
-  category: string;
-  created_at: string;
-};
-
-const products: Product[] = [
-  {
-    id: "product-1",
-    name: "Red Candle",
-    quatity: 20,
-    category: "Candle",
-    created_at: Date.now().toString(),
-  },
-  {
-    id: "product-2",
-    name: "Happy Easter Card",
-    quatity: 800,
-    category: "Card",
-    created_at: Date.now().toString(),
-  },
-  {
-    id: "product-3",
-    name: "Silver Candle",
-    quatity: 20,
-    category: "Candle Holder",
-    created_at: Date.now().toString(),
-  },
-];
+import AddNewProductFormDialog from "./components/add-product-form-dialog";
+import ProductTable from "./components/product-table";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 function ProductsPage() {
   const { header, setHeader } = useContext(GlobalContext) as GlobalContextType;
+
+  const {
+    products,
+    isProductsLoading,
+    total,
+    currentPage,
+    nextPage,
+    prevPage,
+    lastPage,
+  } = useProduct();
 
   useEffect(() => {
     if (header !== "Dashboard") return;
@@ -56,34 +35,37 @@ function ProductsPage() {
     <div className="w-full flex flex-col gap-6">
       <div className="w-full py-4 flex">
         <div className="flex-1" />
-        <Button>
-          Add New <Plus className="pl-2 size-8" />
-        </Button>
+        <AddNewProductFormDialog />
       </div>
-      <div className="w-full overflow-x-scroll">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead />
-              <TableHead>Name</TableHead>
-              <TableHead>Quantity in Stock</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Created At</TableHead>
-            </TableRow>
-          </TableHeader>
+      <div className="w-full flex flex-col gap-6 min-h-48 overflow-x-scroll pb-8">
+        {isProductsLoading && (
+          <div className="flex w-full h-full italic items-center justify-center">
+            <Loader className="animate-spin size-16 text-primary" />
+          </div>
+        )}
 
-          <TableBody>
-            {products.map((itm, idx) => (
-              <TableRow key={itm.id}>
-                <TableCell>{idx + 1}</TableCell>
-                <TableCell className="font-medium">{itm.name}</TableCell>
-                <TableCell>{itm.quatity}</TableCell>
-                <TableCell>{itm.category}</TableCell>
-                <TableCell>{itm.created_at}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <ProductTable products={products} />
+
+        {products && total && total > 15 && (
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  isActive={currentPage !== 1}
+                  onClick={prevPage}
+                  className="cursor-pointer"
+                />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext
+                  isActive={currentPage !== lastPage}
+                  onClick={nextPage}
+                  className="cursor-pointer"
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        )}
       </div>
     </div>
   );

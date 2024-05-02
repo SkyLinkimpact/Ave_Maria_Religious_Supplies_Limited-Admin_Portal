@@ -1,11 +1,10 @@
 import { createElement, ElementType, useContext } from "react";
 import { Link, useMatch } from "react-router-dom";
-import { LayoutDashboard, List, Package, ShoppingBag } from "lucide-react";
+import { LayoutDashboard, List, Package } from "lucide-react";
 
 import {
   CATEGORIES_ROUTE,
   DASHBOARD_ROUTE,
-  ORDERS_ROUTE,
   PRODUCTS_ROUTE,
 } from "@/routes";
 import { cn } from "@/lib/utils";
@@ -35,11 +34,11 @@ export const SIDEBAR_MENU_LINKS: ISideBarNavLink[] = [
     path: PRODUCTS_ROUTE,
     title: "Products",
   },
-  {
-    icon: ShoppingBag,
-    path: ORDERS_ROUTE,
-    title: "Orders",
-  },
+  // {
+  //   icon: ShoppingBag,
+  //   path: ORDERS_ROUTE,
+  //   title: "Orders",
+  // },
   // {
   //   icon: Users,
   //   path: USERS_ROUTE,

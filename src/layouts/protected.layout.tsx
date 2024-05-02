@@ -14,7 +14,7 @@ function ProtectedLayout() {
         </div>
 
         {/* Page render port */}
-        <div className="grid grid-rows-[auto_auto_1fr] md:grid-rows-[auto_1fr]">
+        <div className="grid grid-rows-[auto_auto_1fr] md:grid-rows-[auto_1fr] h-full overflow-y-auto">
           <MobileNav />
           <Header />
           <div className="px-4 lg:pl-8 overflow-y-auto">

@@ -13,3 +13,26 @@ export const updateCategoryRequestSchema = z.object({
     .min(1, "Title field is required")
     .min(3, "Title field sshould be atleat 3 characters long"),
 });
+
+export const storeProductRequestSchema = z.object({
+  title: z
+    .string()
+    .min(1, "Title field is required")
+    .min(3, "Title field should be atleast 3 characeters long"),
+  price: z.number().min(0.01, "Price should be atleast 0.01"),
+  inventory: z.number().min(1, "Inventory field should be atleast 1"),
+  category_id: z.string().min(1, "Category is required"),
+  aws_link: z.string().optional(),
+  images: z.instanceof(File, { message: "Product Image is required" }),
+});
+
+export const editProductRequestSchema = z.object({
+  title: z
+    .string()
+    .min(1, "Title field is required")
+    .min(3, "Title field should be atleast 3 characeters long"),
+  price: z.number().min(0.01, "Price should be atleast 0.01"),
+  inventory: z.number().min(1, "Inventory field should be atleast 1"),
+  category_id: z.string().min(1, "Category is required"),
+  aws_link: z.string().optional(),
+});

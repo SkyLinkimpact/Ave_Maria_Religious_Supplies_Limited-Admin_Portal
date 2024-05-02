@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
 import Stats from "./components/stats";
-import PendingOrders from "./components/pending-orders";
 function DashboardPage() {
   const { header, setHeader } = useContext(GlobalContext) as GlobalContextType;
 
@@ -12,7 +11,7 @@ function DashboardPage() {
   return (
     <div className="flex flex-col gap-4 w-full">
       <Stats />
-      <PendingOrders />
+      {/* <PendingOrders /> */}
     </div>
   );
 }
