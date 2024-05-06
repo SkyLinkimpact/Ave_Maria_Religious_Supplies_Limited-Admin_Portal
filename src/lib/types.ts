@@ -47,6 +47,7 @@ export type Product = {
   title: string;
   slug: string;
   price: number;
+  description: string;
   inventory: number;
   category: Category;
   createdAt: string;

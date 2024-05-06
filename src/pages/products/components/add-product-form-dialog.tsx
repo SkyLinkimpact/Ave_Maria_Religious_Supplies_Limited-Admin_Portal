@@ -38,6 +38,7 @@ import { storeProduct } from "@/services/product.service";
 import { storeProductRequestSchema } from "@/lib/schemas";
 import useCategory from "@/hooks/category.hook";
 import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea";
 
 function AddNewProductFormDialog() {
   const queryClient = useQueryClient();
@@ -69,6 +70,7 @@ function AddNewProductFormDialog() {
     defaultValues: {
       aws_link: "",
       category_id: "",
+      description: "",
       images: undefined,
       inventory: 1,
       price: 1,
@@ -206,6 +208,21 @@ function AddNewProductFormDialog() {
                 )}
               />
             )}
+
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="price"

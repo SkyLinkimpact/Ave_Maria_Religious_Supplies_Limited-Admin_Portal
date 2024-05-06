@@ -44,6 +44,7 @@ import { editProduct } from "@/services/product.service";
 import { editProductRequestSchema } from "@/lib/schemas";
 import useCategory from "@/hooks/category.hook";
 import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
   product: Product;
@@ -83,6 +84,7 @@ function EditProductFormDialog({ product }: Props) {
       inventory: 0,
       price: product.price,
       title: product.title,
+      description: product.description,
     },
   });
 
@@ -200,6 +202,21 @@ function EditProductFormDialog({ product }: Props) {
                 )}
               />
             )}
+
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="price"

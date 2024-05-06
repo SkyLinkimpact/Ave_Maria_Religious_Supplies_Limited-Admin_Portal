@@ -19,6 +19,10 @@ export const storeProductRequestSchema = z.object({
     .string()
     .min(1, "Title field is required")
     .min(3, "Title field should be atleast 3 characeters long"),
+  description: z
+    .string()
+    .min(1, "Description field is required")
+    .min(3, "Description field should be atleast 3 characeters long"),
   price: z.number().min(0.01, "Price should be atleast 0.01"),
   inventory: z.number().min(1, "Inventory field should be atleast 1"),
   category_id: z.string().min(1, "Category is required"),
