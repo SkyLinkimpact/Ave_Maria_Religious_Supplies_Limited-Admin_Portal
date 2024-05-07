@@ -40,3 +40,8 @@ export const editProductRequestSchema = z.object({
   category_id: z.string().min(1, "Category is required"),
   aws_link: z.string().optional(),
 });
+
+export const loginRequestSchema = z.object({
+  email: z.string().email().min(1, "Email field is required"),
+  password: z.string().min(1, "Password field is required"),
+});

@@ -2,13 +2,10 @@ import { createElement, ElementType, useContext } from "react";
 import { Link, useMatch } from "react-router-dom";
 import { LayoutDashboard, List, Package } from "lucide-react";
 
-import {
-  CATEGORIES_ROUTE,
-  DASHBOARD_ROUTE,
-  PRODUCTS_ROUTE,
-} from "@/routes";
+import { CATEGORIES_ROUTE, DASHBOARD_ROUTE, PRODUCTS_ROUTE } from "@/routes";
 import { cn } from "@/lib/utils";
 import { GlobalContext, GlobalContextType } from "@/contexts/global.context";
+import LogoutButton from "./logout-button";
 
 export interface ISideBarNavLink {
   path: string;
@@ -94,15 +91,19 @@ function SideBar() {
         <h1 className="text-5xl font-bold logo text-primary">ADMIN</h1>
       </Link>
 
-      <div className="px-4 py-2 flex flex-col gap-2">
-        {SIDEBAR_MENU_LINKS.map((menu) => (
-          <SideBarNavLinkItem
-            key={menu.title}
-            icon={menu.icon}
-            path={menu.path}
-            title={menu.title}
-          />
-        ))}
+      <div className="px-4 py-2 flex flex-col">
+        <div className="flex flex-col gap-2">
+          {SIDEBAR_MENU_LINKS.map((menu) => (
+            <SideBarNavLinkItem
+              key={menu.title}
+              icon={menu.icon}
+              path={menu.path}
+              title={menu.title}
+            />
+          ))}
+        </div>
+        <div className="flex-1" />
+        <LogoutButton />
       </div>
     </div>
   );

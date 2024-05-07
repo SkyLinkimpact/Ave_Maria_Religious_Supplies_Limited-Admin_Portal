@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { LoginRequestSchema } from "./login.schema";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -15,10 +13,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { DASHBOARD_ROUTE } from "@/routes";
+import { LoginRequest, ServerErrorResponse } from "@/lib/types";
+import { loginRequestSchema } from "@/lib/schemas";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "@/services/user.service";
+import { toast } from "sonner";
 
 function LoginPage() {
-  const form = useForm<z.infer<typeof LoginRequestSchema>>({
-    resolver: zodResolver(LoginRequestSchema),
+  const form = useForm<LoginRequest>({
+    resolver: zodResolver(loginRequestSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -27,9 +30,27 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    navigate(DASHBOARD_ROUTE);
-  };
+  const loginMutation = useMutation({
+    mutationFn: (payload: LoginRequest) => login(payload),
+    onSuccess: (res) => {
+      toast.success("Login", {
+        position: "top-right",
+        description: "You have successfully logged in",
+      });
+
+      window.localStorage.setItem("amrsl-admin_key", res.token);
+
+      navigate(DASHBOARD_ROUTE);
+    },
+    onError: (err: ServerErrorResponse) => {
+      toast.error("Login", {
+        position: "top-right",
+        description: err.response.data.message,
+      });
+    },
+  });
+
+  const handleSubmit = form.handleSubmit((data) => loginMutation.mutate(data));
 
   return (
     <Card className="w-[300px]">

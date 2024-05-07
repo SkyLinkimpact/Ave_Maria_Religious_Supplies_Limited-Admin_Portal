@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   editProductRequestSchema,
+  loginRequestSchema,
   storeCategoryRequestSchema,
   storeProductRequestSchema,
   updateCategoryRequestSchema,
@@ -66,4 +67,16 @@ export type CategoryWithProductCount = {
   id: string;
   title: string;
   productCount: number;
+};
+
+export type LoginRequest = z.infer<typeof loginRequestSchema>;
+
+export type LoginResponse = {
+  token: string;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  isAdmin: boolean;
 };
