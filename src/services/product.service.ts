@@ -32,6 +32,7 @@ export async function storeProduct(payload: StoreProductRequest) {
   data.append("aws_link", payload.aws_link ?? "");
   data.append("category_id", payload.category_id);
   data.append("title", payload.title);
+  data.append("description", payload.description);
 
   const res = await axiosInstance.post<ServerMessageResponse>("product", data, {
     headers: {
