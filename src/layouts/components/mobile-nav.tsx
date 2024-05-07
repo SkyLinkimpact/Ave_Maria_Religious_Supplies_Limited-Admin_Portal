@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SIDEBAR_MENU_LINKS, SideBarNavLinkItem } from "./sidebar";
 import { useState } from "react";
+import LogoutButton from "./logout-button";
 
 function MobileNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,16 +34,20 @@ function MobileNav() {
         </SheetTrigger>
 
         <SheetContent>
-          <div className="flex flex-col gap-2">
-            {SIDEBAR_MENU_LINKS.map((menu) => (
-              <SideBarNavLinkItem
-                key={menu.title}
-                icon={menu.icon}
-                path={menu.path}
-                title={menu.title}
-                onAction={() => setIsMenuOpen(false)}
-              />
-            ))}
+          <div className="flex flex-col h-full">
+            <div className="flex flex-col gap-2">
+              {SIDEBAR_MENU_LINKS.map((menu) => (
+                <SideBarNavLinkItem
+                  key={menu.title}
+                  icon={menu.icon}
+                  path={menu.path}
+                  title={menu.title}
+                  onAction={() => setIsMenuOpen(false)}
+                />
+              ))}
+            </div>
+            <div className="flex-1" />
+            <LogoutButton />
           </div>
         </SheetContent>
       </Sheet>
