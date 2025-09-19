@@ -76,6 +76,24 @@ function AddCategoryFormDialog() {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <FormField
               control={form.control}
+              name="image"
+              render={() => (
+                <FormItem className="w-full">
+                  <FormLabel>Category Image</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      onChange={(e) =>
+                        form.setValue("image", e.target.files![0])
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="title"
               render={({ field }) => (
                 <FormItem>

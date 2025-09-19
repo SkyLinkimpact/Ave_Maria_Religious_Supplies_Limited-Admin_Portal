@@ -25,9 +25,14 @@ export async function getCategories() {
  * @returns Server response
  */
 export async function storeCategory(payload: StoreCategoryRequest) {
+  const data = new FormData();
+  data.append("image", payload.image);
+  data.append("title", payload.title);
+
   const res = await axiosInstance.post<ServerMessageResponse>(
     "categories",
-    payload
+    data,
+    { headers: { "Content-Type": "multipart/form-data" } }
   );
 
   return res.data;

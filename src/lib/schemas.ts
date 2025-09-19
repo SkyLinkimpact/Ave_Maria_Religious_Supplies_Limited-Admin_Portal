@@ -5,6 +5,7 @@ export const storeCategoryRequestSchema = z.object({
     .string()
     .min(1, "Title field is required")
     .min(3, "Title field sshould be atleat 3 characters long"),
+  image: z.instanceof(File, { message: "Category Image is required" }),
 });
 
 export const updateCategoryRequestSchema = z.object({

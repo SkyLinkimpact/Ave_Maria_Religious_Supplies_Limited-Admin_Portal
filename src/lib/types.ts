@@ -23,6 +23,7 @@ export type Category = {
   id: string;
   title: string;
   slug: string;
+  image?: string;
   createdAt: string;
 };
 
